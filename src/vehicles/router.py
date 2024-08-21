@@ -22,3 +22,4 @@ def create_vehicle(vehicle: VehicleCreate, db: Session = Depends(get_db), user :
     return {
         'detail': 'vehicle added '
     }
+

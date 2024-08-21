@@ -59,4 +59,14 @@ class UserDetail(BaseModel):
     first_name: str
     last_name: str
     vehicles: Optional[List[VehicleInformation]] =  None
-    
+
+class EVChargerMachineCreate(BaseModel):
+    machine_model_number: str
+    latitude: str
+    longitute: str
+
+class EVChargerMachineUpdate(BaseModel):
+    machine_model_number: str
+    latitude: str
+    longitute: str
+
