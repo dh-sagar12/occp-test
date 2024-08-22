@@ -19,3 +19,5 @@ docker-compose.dev.yml
 
 local_storage/
 data/
+
+new_venv

@@ -1,8 +1,6 @@
-
 from src.utils.models import BaseModel
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
-
 
 class EVChargerMachine(BaseModel):
     __tablename__ = "ev_charger_machines"
