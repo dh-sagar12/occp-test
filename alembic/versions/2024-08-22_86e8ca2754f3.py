@@ -26,7 +26,7 @@ def upgrade() -> None:
     sa.Column('latitude', sa.String(), nullable=False),
     sa.Column('longitute', sa.String(), nullable=False),
     sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('machine_model_name')
+    sa.UniqueConstraint('machine_model_number')
     )
     # ### end Alembic commands ###
 
