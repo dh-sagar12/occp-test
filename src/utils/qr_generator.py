@@ -1,21 +1,31 @@
 import qrcode
+import json
 
-def generate_qr(device_id: str):
-    # URL format: /connect?device_id={device_id}&user_id={user_id}&vehicle_id={vehicle_id}
-    base_url = "localhost:8000/api/v1/connect"
-    url = f"{base_url}?device_id={device_id}"
-    
-    qr = qrcode.QRCode(
-        version=1,
-        error_correction=qrcode.constants.ERROR_CORRECT_L,
-        box_size=10,
-        border=4,
-    )
-    qr.add_data(url)
-    qr.make(fit=True)
+# Define the charge point data
+charge_point_data = {
+    "chargePointId": 1,
+    "name": "Charge Point 1",
+    "location": "Garage 1",
+    "status": "Available"
+}
 
-    img = qr.make_image(fill='black', back_color='white')
-    img.save(f"device_{device_id}_qr.png")
+# Convert the data to JSON
+data_json = json.dumps(charge_point_data)
 
-# Example usage:
-generate_qr("device123")
+# Generate the QR code
+qr = qrcode.QRCode(
+    version=1,  # controls the size of the QR code
+    error_correction=qrcode.constants.ERROR_CORRECT_L,  # error correction level
+    box_size=10,  # size of the boxes in the QR code grid
+    border=4,  # thickness of the border (in boxes)
+)
+qr.add_data(data_json)
+qr.make(fit=True)
+
+# Create an image from the QR code
+img = qr.make_image(fill='black', back_color='white')
+
+# Save the QR code as an image file
+img.save("charge_point_qr.png")
+
+print("QR code generated and saved as 'charge_point_qr.png'")
