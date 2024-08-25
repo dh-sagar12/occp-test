@@ -65,11 +65,11 @@ def create_user(payload: FieldUserCreateBody, db: Session  = Depends(get_db)):
 def current_user_detail(db:Session =  Depends(get_db), current_user = Depends(get_current_user)):
     
     vehicles  = db.query(UserVehicle).filter(UserVehicle.user_id  == current_user.id, UserVehicle.deleted_at.is_(None)).all()
-
+    
     vehicles_response =  [ VehicleInformation( 
         id= vehicle.id,
         vehicle_name  = vehicle.vehicle_name,
-        vechicle_number  = vehicle.vehicle_number, 
+        vehicle_number  = vehicle.vehicle_number, 
         description = vehicle.description, 
         )  for vehicle in vehicles]
     

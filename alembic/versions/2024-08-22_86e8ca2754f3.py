@@ -24,7 +24,10 @@ def upgrade() -> None:
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('machine_model_number', sa.String(), nullable=False),
     sa.Column('latitude', sa.String(), nullable=False),
-    sa.Column('longitute', sa.String(), nullable=False),
+    sa.Column('longitude', sa.String(), nullable=False),
+    sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.func.now(), nullable=False),
+    sa.Column('updated_at', sa.DateTime(timezone=True), server_default=sa.func.now(), server_onupdate=sa.func.now(), nullable=False),
+    sa.Column('deleted_at', sa.DateTime(timezone=True), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('machine_model_number')
     )

@@ -8,7 +8,7 @@ build:
 	docker compose -f $(DOCKER_COMPOSE_DEV) build
 
 migrate-db:
-	docker-compose -f $(DOCKER_COMPOSE_DEV) exec app alembic -c alembic.dev.ini upgrade head
+	docker compose -f $(DOCKER_COMPOSE_DEV) exec app alembic -c alembic.dev.ini upgrade head
 
 autogenerate:
 	docker compose -f $(DOCKER_COMPOSE_DEV) exec app alembic -c alembic.dev.ini revision --autogenerate -m "revision"

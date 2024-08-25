@@ -48,8 +48,8 @@ class VehicleCreate(BaseModel):
 
 class VehicleInformation(BaseModel):
     id: Optional[int] = None
-    vehicle_name: str = None
-    vehicle_number: str =  None
+    vehicle_name: Optional[str] = None
+    vehicle_number: Optional[str] =  None
     description: Optional[str]  = None
 
 
@@ -63,10 +63,17 @@ class UserDetail(BaseModel):
 class EVChargerMachineCreate(BaseModel):
     machine_model_number: str
     latitude: str
-    longitute: str
+    longitude: str
 
 class EVChargerMachineUpdate(BaseModel):
     machine_model_number: str
     latitude: str
     longitute: str
+
+
+class EVChargingMachines(BaseModel):
+    id: int
+    model_number: str
+    logitude: Optional[str] =  None
+    latitude: Optional[str] =  None
 
