@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Communication</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cpId = '1'; // Replace with actual cp_id
+            const userId = 1; // Replace with actual user_id
+            const vehicleId = 1; // Replace with actual vehicle_id
+            const websocketUrl = `ws://localhost:8000/ocpp/1`;
+            
+            let socket = new WebSocket(websocketUrl);
+            
+            socket.onopen = () => {
+                console.log('WebSocket connection opened.');
+            };
+            
+            socket.onmessage = (event) => {
+                try {
+                    const message = JSON.parse(event.data);
+                    console.log('Message from server:', message);  // Log the response
+                    document.getElementById('response').textContent = `Charging Percentage: ${message.chargePercentage}%`;
+                } catch (error) {
+                    console.error('Error parsing message:', error);
+                }
+            };
+            
+            socket.onclose = (event) => {
+                console.log('WebSocket connection closed:', event);
+            };
+            
+            socket.onerror = (error) => {
+                console.error('WebSocket error:', error);
+            };
+        });
+    </script>
+</head>
+<body>
+    <h1>WebSocket Communication</h1>
+    <div>
+        <h2>Charging Status:</h2>
+        <pre id="response">Waiting for updates...</pre>
+    </div>
+</body>
+</html>
