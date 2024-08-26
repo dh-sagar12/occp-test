@@ -138,7 +138,7 @@ class ChargePoint(cp):
                 }]
             )
             await self.call(request)
-            await asyncio.sleep(5)
+            await asyncio.sleep(10)
         await self.stop_transaction(transaction_id)
 
     async def stop_transaction(self, transaction_id):
