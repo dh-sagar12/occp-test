@@ -1,7 +1,7 @@
 # Use an official Python runtime as the base image
 FROM --platform=linux/x86_64 python:3.11-slim
 
-ENV TZ Asia/Tokyo
+ENV TZ Asia/Kathmandu
 # Set the working directory in the container
 WORKDIR /app
 
