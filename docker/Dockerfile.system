@@ -1,0 +1,18 @@
+# Use an official Python runtime as a parent image
+FROM python:3.8-slim-buster
+
+# Set the working directory in the container to /app
+WORKDIR /app
+
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+# Install any needed packages specified in requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Expose the ports used by the charge point system
+EXPOSE 9000
+EXPOSE 9002
+
+# Run the charge_point_system.py script when the container launches
+CMD ["python", "charge_point_system.py"]

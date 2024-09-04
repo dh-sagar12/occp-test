@@ -22,7 +22,6 @@ services:
       - REFRESH_TOKEN_EXPIRES_AT=600
       - JWT_ALGORITHM=HS256
       - JWT_SECRET=90ab95d8b26d2e84cb07b207393c36b1d46276a0e76b2a7fc0390ee7d9afab21
-
     command: sh -c "pip install -r requirements.txt && uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload"
     volumes:
       - ..:/app
@@ -38,3 +37,17 @@ services:
     volumes:
       - ../pgdata:/var/lib/postgresql/data
 
+  simulator:
+    container_name: occp-simulator
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile.simulator
+
+  system:
+    container_name: occp-system
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile.system
+    ports:
+        - "9000:9000"
+        - "9002:9002"

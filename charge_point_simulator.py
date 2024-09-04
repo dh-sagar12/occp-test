@@ -152,7 +152,7 @@ class ChargePoint(cp):
 
 async def main():
     async with websockets.connect(
-        'ws://localhost:9000/1',
+        'ws://occp-system:9000/1',
         subprotocols=['ocpp1.6']
     ) as ws:
         cp = ChargePoint('1', ws)
